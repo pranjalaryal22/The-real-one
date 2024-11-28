@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      position: relative;
+    }
+
+    .top-header {
+      background-color: rgba(241, 238, 238, 1);
+      border-bottom: 1px solid rgba(217, 217, 217, 1);
+      z-index: 0;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 24px;
+      overflow: hidden;
+      color: var(--sds-color-text-default-default);
+      justify-content: start;
+      flex-wrap: wrap;
+      padding: 32px;
+    }
+
+    .nav-pills {
+      align-self: stretch;
+      display: flex;
+      min-width: 240px;
+      width: 934px;
+      height: 32px;
+      gap: 8px;
+      flex: 1;
+      flex-basis: 0%;
+      margin: auto 0;
+    }
+
+    .auth-buttons {
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: start;
+      width: 178px;
+      margin: auto 0;
+    }
+
+    .auth-btn {
+      align-self: stretch;
+      border-radius: 8px;
+      background-color: #fff;
+      gap: 8px;
+      overflow: hidden;
+      flex: 1;
+      margin: auto 0;
+      padding: 8px;
+      border: 1px solid rgba(118, 118, 118, 1);
+      cursor: pointer;
+    }
+
+    .auth-btn-primary {
+      border-color: rgba(44, 44, 44, 1);
+    }
+
+    .product-results {
+      background-color: #fff;
+      z-index: 0;
+      display: flex;
+      width: 100%;
+      align-items: start;
+      gap: 40px 64px;
+      justify-content: start;
+      flex-wrap: wrap;
+      padding: 32px;
+      background-image: url("burger.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .filter-sidebar {
+      border-radius: 8px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      justify-content: start;
+      width: 240px;
+      padding: 16px;
+      border: 1px solid rgba(217, 217, 217, 1);
+    }
+
+    .filter-section {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      color: var(--sds-color-text-default-default);
+      font: var(--sds-typography-body-font-weight-regular)
+        var(--sds-typography-body-size-medium)
+        var(--sds-typography-body-font-family);
+    }
+
+    .filter-heading {
+      align-self: start;
+      line-height: 1.4;
+    }
+
+    .keyword-tags {
+      border-radius: 4px;
+      display: flex;
+      margin-top: 12px;
+      width: 100%;
+      align-items: start;
+      gap: 4px;
+      line-height: 1;
+      justify-content: start;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      border-radius: 8px;
+      background-color: rgba(245, 245, 245, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      padding: 8px;
+    }
+
+    .tag-text {
+      align-self: stretch;
+      margin: auto 0;
+    }
+
+    .tag-remove {
+      aspect-ratio: 1;
+      width: 16px;
+      align-self: stretch;
+      margin: auto 0;
+      cursor: pointer;
+    }
+
+    .checkbox-group {
+      display: flex;
+      margin-top: 24px;
+      width: 100%;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .checkbox-label {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .checkbox-input {
+      border-radius: 4px;
+      background-color: rgba(44, 44, 44, 1);
+      align-self: stretch;
+      min-height: 16px;
+      width: 16px;
+      margin: auto 0;
+    }
+
+    .checkbox-text {
+      color: var(--sds-color-text-default-default);
+      align-self: stretch;
+      flex: 1;
+      margin: auto 0;
+      font: var(--sds-typography-body-font-weight-regular)
+        var(--sds-typography-body-size-medium) / 1.4
+        var(--sds-typography-body-font-family);
+    }
+
+    .price-slider {
+      display: flex;
+      margin-top: 24px;
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .slider-header {
+      display: flex;
+      width: 100%;
+      align-items: start;
+      font-family: var(--sds-typography-body-font-family);
+      color: var(--sds-color-text-default-default);
+      font-weight: var(--sds-typography-body-font-weight-regular);
+      line-height: 1.4;
+      justify-content: space-between;
+    }
+
+    .slider-label {
+      font-size: var(--sds-typography-body-size-medium);
+      flex: 1;
+    }
+
+    .slider-value {
+      display: flex;
+      align-items: center;
+      font-size: var(--sds-typography-body-size-small);
+      text-align: right;
+    }
+
+    .slider-track {
+      display: flex;
+      margin-top: 12px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .slider-rail {
+      border-radius: 9999px;
+      background-color: rgba(230, 230, 230, 1);
+      align-self: stretch;
+      display: flex;
+      height: 8px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .slider-handle {
+      border-radius: 9999px;
+      background-color: rgba(44, 44, 44, 1);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .product-grid {
+      border-radius: 8px;
+      display: flex;
+      align-items: space-evenly;
+      justify-items: center;
+      min-width: 240px;
+      flex-direction: column;
+      flex: 1;
+      flex-basis: 32px;
+      font: var(--sds-typography-body-size-medium)
+        var(--sds-typography-body-font-family);
+      /* display: grid;
+      grid-template-columns: repeat(1, 3fr);
+      grid-auto-rows: minmax(150px, auto);
+      grid-gap: 50px;
+      max-width: 240px;
+      max-height: 250px;
+      margin: 0 auto;  */
+    }
+
+    .search-bar {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      color: var(--sds-color-text-default-tertiary);
+      font-weight: var(--sds-typography-body-font-weight-regular);
+      line-height: 1;
+      justify-content: space-between;
+    }
+
+    .search-input {
+      border-radius: 9999px;
+      background-color: #fff;
+      align-self: stretch;
+      display: flex;
+      min-width: 240px;
+      width: 327px;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border: 1px solid rgba(217, 217, 217, 1);
+    }
+
+    .search-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .products-grid {
+      display: grid;
+      /* grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); */
+      grid-template-columns: auto auto auto;
+      gap: 24px;
+      margin-top: 48px;
+      width: 80%;
+      color: var(--sds-color-text-default-default);
+      line-height: 1.4;
+    }
+
+    .product-card {
+      border-radius: 8px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      border: 1px solid rgba(217, 217, 217, 1);
+      width: 80%;
+    }
+
+    .product-image {
+      aspect-ratio: 0.93;
+      width: 100%;
+      min-height: 247px;
+      object-fit: contain;
+    }
+
+    .product-details {
+      display: flex;
+      margin-top: 16px;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .product-title {
+      font-weight: 700;
+      margin: 0;
+      padding: 0;
+    }
+
+    .product-price {
+      margin: 0;
+      padding: 0;
+      font-weight: 700;
+    }
+
+    .page-footer {
+      background-color: #fff;
+      border-top: 1px solid rgba(217, 217, 217, 1);
+      display: flex;
+      min-height: 361px;
+      width: 100%;
+      align-items: start;
+      gap: 16px;
+      overflow: hidden;
+      justify-content: start;
+      flex-wrap: wrap;
+      padding: 32px 32px 53px;
+    }
+
+    .footer-section {
+      display: flex;
+      min-width: 240px;
+      flex-direction: column;
+      width: 262px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .social-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      padding-bottom: 16px;
+    }
+
+    .footer-link {
+      color: var(--sds-color-text-default-default);
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      aspect-ratio: 4.05;
+      width: 299px;
+      border-radius: 4px 4px 0 0;
+      position: absolute;
+      z-index: 0;
+      min-height: 74px;
+      left: 20px;
+      top: 17px;
+    }
+
+    @media (max-width: 991px) {
+      .top-header,
+      .product-results,
+      .page-footer {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+
+      .products-grid {
+        margin-top: 40px;
+      }
+
+      .product-grid {
+        max-width: 100%;
+      }
+    }
+  </style>
+  <body>
+    <div class="menu-container">
+      <header class="top-header">
+        <nav class="nav-pills" aria-label="Main navigation"></nav>
+        <div class="auth-buttons">
+          <button class="auth-btn" aria-label="Sign in">Sign in</button>
+          <button class="auth-btn auth-btn-primary" aria-label="Register">
+            Register
+          </button>
+        </div>
+      </header>
+
+      <main class="product-results">
+        <aside class="filter-sidebar">
+          <section class="filter-section">
+            <h2 class="filter-heading">Keywords</h2>
+            <div class="keyword-tags">
+              <div class="tag" role="button" tabindex="0">
+                <span class="tag-text">Chicken</span>
+                <img
+                  class="tag-remove"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/a12d35a344a22193abbd6967323e06681ded55706ceaed5c38ea31dce6653538?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                  alt="Remove chicken filter"
+                />
+              </div>
+              <div class="tag" role="button" tabindex="0">
+                <span class="tag-text">Drinks</span>
+                <img
+                  class="tag-remove"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/a12d35a344a22193abbd6967323e06681ded55706ceaed5c38ea31dce6653538?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                  alt="Remove drinks filter"
+                />
+              </div>
+              <div class="tag" role="button" tabindex="0">
+                <span class="tag-text">Veg</span>
+                <img
+                  class="tag-remove"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/a12d35a344a22193abbd6967323e06681ded55706ceaed5c38ea31dce6653538?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                  alt="Remove veg filter"
+                />
+              </div>
+            </div>
+          </section>
+
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <label class="checkbox-label">
+                <input
+                  type="checkbox"
+                  class="checkbox-input"
+                  checked
+                  aria-label="Filter by chicken items"
+                />
+                <span class="checkbox-text">Chicken Items</span>
+              </label>
+            </div>
+            <div class="checkbox-item">
+              <label class="checkbox-label">
+                <input
+                  type="checkbox"
+                  class="checkbox-input"
+                  aria-label="Filter by veg items"
+                />
+                <span class="checkbox-text">Veg Items</span>
+              </label>
+            </div>
+            <div class="checkbox-item">
+              <label class="checkbox-label">
+                <input
+                  type="checkbox"
+                  class="checkbox-input"
+                  aria-label="Filter by cold drinks"
+                />
+                <span class="checkbox-text">Cold drinks</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="price-slider">
+            <div class="slider-header">
+              <span class="slider-label">Price</span>
+              <div class="slider-value">
+                <span>Rs 0-5000</span>
+              </div>
+            </div>
+            <div class="slider-track">
+              <div class="slider-rail">
+                <div
+                  class="slider-handle"
+                  role="slider"
+                  aria-valuemin="0"
+                  aria-valuemax="5000"
+                  aria-valuenow="0"
+                  tabindex="0"
+                ></div>
+                <div
+                  class="slider-handle"
+                  role="slider"
+                  aria-valuemin="0"
+                  aria-valuemax="5000"
+                  aria-valuenow="5000"
+                  tabindex="0"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <section class="product-grid">
+          <div class="search-bar">
+            <div class="search-input">
+              <label for="search" class="visually-hidden"
+                >Search products</label
+              >
+              <input
+                type="search"
+                id="search"
+                placeholder="Search"
+                aria-label="Search products"
+              />
+              <img
+                class="search-icon"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/f352c30257ddfc0160ee19bdedb7e69c13e6fcf92b370ade82a1fd57f23c5359?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="products-grid">
+            <article class="product-card">
+              <img
+                class="product-image"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/7f53a3119ee96cfb269fc5d6873352f1edbbc951b69ad363e8445d78474a2587?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Chicken Sandwich"
+              />
+              <div class="product-details">
+                <h3 class="product-title">Chicken Sandwich</h3>
+                <p class="product-price">Rs 250</p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img
+                class="product-image"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/4cb5a83035f3e94cfafe60cc2515b8f2e0b7583a72b97d76775680dec34d4e68?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Chicken Chilly"
+              />
+              <div class="product-details">
+                <h3 class="product-title">Chicken Chilly</h3>
+                <p class="product-price">Rs 350</p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img
+                class="product-image"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8af4e794df4f55d2f950aa376a1ac35dd928cf772ecc83d32d89f9a242522d0a?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Coca-Cola 500 ml"
+              />
+              <div class="product-details">
+                <h3 class="product-title">Coca-Cola 500 ml</h3>
+                <p class="product-price">Rs 100</p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img
+                class="product-image"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/2c2b62982fd8bf7fda88d15f4a978c731dea72a0ec5f46d45ac5436a8fd933a2?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Fanta 500 ml"
+              />
+              <div class="product-details">
+                <h3 class="product-title">Fanta 500 ml</h3>
+                <p class="product-price">Rs 100</p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img
+                class="product-image"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d43df8b7e091114e139c76f2f3cbdbec9e3221e3667484c9231eb528aabfc8f?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Veg Burger"
+              />
+              <div class="product-details">
+                <h3 class="product-title">Veg Burger</h3>
+                <p class="product-price">Rs 250</p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <img
+                class="product-image"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/cfc16fccfa377dc970b932c8f4bf66510231653033f8f50e9e11185670cd6280?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Fish Burger"
+              />
+              <div class="product-details">
+                <h3 class="product-title">Fish Burger</h3>
+                <p class="product-price">Rs 300</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="page-footer">
+        <div class="footer-section">
+          <img
+            class="brand-logo"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c880a1f1af7d6d74b5caf3ab8b14f72acbb243f2e111779dbb9a53e788b5ca8c?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+            alt="e-menu logo"
+          />
+          <div class="social-icons">
+            <a href="#" aria-label="Visit our Facebook page">
+              <img
+                class="social-icon"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/b742f3f6e1cba31a89a8e6720d9b537141ad17b582c67349ffda3d14027d6bb4?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt=""
+              />
+            </a>
+            <a href="#" aria-label="Visit our Twitter page">
+              <img
+                class="social-icon"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/f17efdf0b5a0ec7eeac670e93bb6d7a5addea6af3f04955a069bad49f1bfe244?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt=""
+              />
+            </a>
+            <a href="#" aria-label="Visit our Instagram page">
+              <img
+                class="social-icon"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/af5e39ee30b3b37eaafe46ab939409e56cc16c6be53056ae5bf95dbce2d76607?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt=""
+              />
+            </a>
+            <a href="#" aria-label="Visit our LinkedIn page">
+              <img
+                class="social-icon"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/ca24970d5697c10f77f67aee9f6b06255d28df651adea5bf7237f2ae455b0d6d?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-section" aria-label="About navigation">
+          <h2 class="footer-title">We are e-menu</h2>
+          <div class="footer-links">
+            <a href="#" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Available Restaurants</a>
+            <a href="#" class="footer-link">Available Areas</a>
+            <a href="#" class="footer-link">Blog</a>
+          </div>
+        </nav>
+
+        <div class="footer-section">
+          <h2 class="footer-title">Call Us</h2>
+          <div class="footer-links">
+            <p>Kathmandu:</p>
+            <p>01-XXXXXXX</p>
+            <p>98XXXXXXXX</p>
+            <p>01-XXXXXXX</p>
+          </div>
+        </div>
+
+        <nav class="footer-section" aria-label="Help navigation">
+          <h2 class="footer-title">Get Help</h2>
+          <div class="footer-links">
+            <a href="#" class="footer-link">How to Order?</a>
+            <a href="#" class="footer-link">FAQs</a>
+            <a href="#" class="footer-link">Contact Us</a>
+          </div>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

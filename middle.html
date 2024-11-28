@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    
+    .visually-hidden {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+  
+    .main-header {
+      background-color: rgba(241, 238, 238, 1);
+      border-bottom: 1px solid rgba(217, 217, 217, 1);
+      z-index: 0;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 24px;
+      overflow: hidden;
+      justify-content: start;
+      flex-wrap: wrap;
+      padding: 32px;
+      font: var(--sds-typography-body-font-weight-regular) var(--sds-typography-body-size-medium) / 1 var(--sds-typography-body-font-family);
+    }
+  
+    .nav-list {
+      align-self: stretch;
+      display: flex;
+      min-width: 240px;
+      align-items: start;
+      gap: 8px;
+      color: var(--sds-color-text-neutral-on-neutral);
+      justify-content: end;
+      flex-wrap: wrap;
+      flex: 1;
+      flex-basis: 0%;
+      margin: auto 0;
+    }
+  
+    .nav-item {
+      align-self: stretch;
+      border-radius: 8px;
+      background-color: rgba(30, 30, 30, 1);
+      padding: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+  
+    .auth-container {
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--sds-color-text-default-default);
+      justify-content: start;
+      width: 178px;
+      margin: auto 0;
+    }
+  
+    .auth-button {
+      align-self: stretch;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 1);
+      flex: 1;
+      margin: auto 0;
+      padding: 8px;
+      cursor: pointer;
+      text-align: center;
+      border: 1px solid rgba(118, 118, 118, 1);
+    }
+  
+    .register-button {
+      border-color: rgba(44, 44, 44, 1);
+    }
+  
+    @media (max-width: 991px) {
+      .main-header {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+  
+      .nav-list {
+        max-width: 100%;
+      }
+  
+      .nav-item {
+        white-space: normal;
+      }
+    }
+  </style>
+  <style>
+    .restaurant-container {
+      z-index: 10;
+      display: flex;
+      margin-right: 160px;
+      width: 591px;
+      max-width: 100%;
+      flex-direction: column;
+      align-items: start;
+      color: var(--sds-color-text-default-default);
+      padding: 50px 0 129px;
+      font: var(--sds-typography-body-font-weight-regular) var(--sds-typography-body-size-medium) var(--sds-typography-body-font-family);
+    }
+    
+    .divider {
+      background-color: rgba(217, 217, 217, 1);
+      align-self: center;
+      width: 696px;
+      max-width: 100%;
+      height: 1px;
+      margin: 50px 0 0;
+    }
+    
+    .restaurant-item {
+      border-radius: 8px;
+      z-index: 10;
+      display: flex;
+      margin-left: 20px;
+      min-height: 46px;
+      align-items: start;
+      gap: 12px;
+      padding: 12px 16px;
+      overflow: hidden;
+    }
+    
+    .restaurant-icon {
+      aspect-ratio: 1;
+      object-fit: contain;
+      object-position: center;
+      width: 20px;
+    }
+    
+    .restaurant-content {
+      display: flex;
+      min-width: 240px;
+      flex-direction: column;
+      flex: 1;
+      flex-basis: 0%;
+    }
+    
+    .restaurant-row {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .restaurant-name {
+      line-height: 1.4;
+      align-self: stretch;
+      flex: 1;
+      flex-basis: 0%;
+      margin: auto 0;
+    }
+    
+    .restaurant-rating {
+      align-self: stretch;
+      border-radius: 8px;
+      white-space: nowrap;
+      line-height: 1;
+      margin: auto 0;
+    }
+    
+    .restaurant-menu {
+      border-radius: var(--sds-size-radius-200);
+      border: var(--sds-size-stroke-border) solid var(--sds-color-border-default-default);
+      background: var(--sds-color-background-default-default);
+      box-shadow: var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-200),
+        var(--sds-size-depth-0) var(--sds-size-depth-100) var(--sds-size-depth-100) var(--sds-size-depth-negative-025) var(--sds-color-black-100);
+      margin-top: -283px;
+      min-height: 563px;
+      padding: var(--sds-size-space-200);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-weight: var(--sds-typography-body-font-weight-strong);
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+    
+    .menu-title {
+      width: 100%;
+      overflow: hidden;
+      padding: 8px 16px 4px;
+    }
+    
+    @media (max-width: 991px) {
+      .restaurant-container {
+        margin-right: 10px;
+        padding-bottom: 100px;
+      }
+      
+      .divider {
+        margin-top: 40px;
+      }
+      
+      .restaurant-content {
+        max-width: 100%;
+      }
+      
+      .restaurant-row {
+        max-width: 100%;
+      }
+      
+      .restaurant-name {
+        max-width: 100%;
+      }
+      
+      .restaurant-rating {
+        white-space: initial;
+      }
+      
+      .restaurant-menu {
+        max-width: 100%;
+        margin-top: -200px;
+        padding-bottom: 100px;
+        white-space: initial;
+      }
+      
+      .menu-title {
+        max-width: 100%;
+        white-space: initial;
+      }
+    }
+    </style>
+  
+  <nav class="main-header" role="navigation" aria-label="Main navigation">
+    <div class="nav-list">
+      <a href="/" class="nav-item" tabindex="0">Home</a>
+      <a href="/about" class="nav-item" tabindex="0">About Us</a>
+      <a href="/contact" class="nav-item" tabindex="0">Contact</a>
+    </div>
+    <div class="auth-container">
+      <button class="auth-button" tabindex="0">Sign in</button>
+      <button class="auth-button register-button" tabindex="0">Register</button>
+    </div>
+  </nav>
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  
+    .featured-image {
+      aspect-ratio: 4.05;
+      object-fit: contain;
+      object-position: center;
+      width: 299px;
+      border-radius: 4px 4px 0 0;
+      position: absolute;
+      z-index: 0;
+      min-height: 74px;
+      max-width: 100%;
+      left: 20px;
+      top: 17px;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  
+  <img
+    loading="lazy"
+    src="https://cdn.builder.io/api/v1/image/assets/TEMP/d57e65ca0a6f4cb17395f0995fec79dba04eea95d5af3dc8ca274e89c1474721?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+    class="featured-image"
+    alt=""
+    tabindex="-1"
+  />
+  <style>
+    .filter-menu {
+      border-radius: 8px;
+      background-color: #fff;
+      display: flex;
+      width: 240px;
+      flex-direction: column;
+      padding: 16px;
+      border: 1px solid #d9d9d9;
+    }
+    
+    .keyword-section {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      color: var(--sds-color-text-default-default);
+      font: var(--sds-typography-body-font-weight-regular) var(--sds-typography-body-size-medium) var(--sds-typography-body-font-family);
+    }
+    
+    .keyword-heading {
+      line-height: 1.4;
+    }
+    
+    .tag-list {
+      border-radius: 4px;
+      display: flex;
+      margin-top: 12px;
+      width: 100%;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    
+    .tag-item {
+      border-radius: 8px;
+      background-color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+    }
+    
+    .tag-text {
+      margin: auto 0;
+    }
+    
+    .tag-icon {
+      width: 16px;
+      height: 16px;
+      margin: auto 0;
+    }
+    
+    .filter-section {
+      display: flex;
+      margin-top: 24px;
+      width: 100%;
+      flex-direction: column;
+    }
+    
+    .checkbox-list {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .checkbox-item {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+    
+    .checkbox-wrapper {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .checkbox-control {
+      border-radius: 4px;
+      background-color: #2c2c2c;
+      display: flex;
+      width: 16px;
+      height: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .checkbox-label {
+      color: var(--sds-color-text-default-default);
+      flex: 1;
+      margin: auto 0;
+      font: var(--sds-typography-body-font-weight-regular) var(--sds-typography-body-size-medium)/1.4 var(--sds-typography-body-font-family);
+    }
+    
+    .price-slider {
+      display: flex;
+      margin-top: 24px;
+      width: 100%;
+      flex-direction: column;
+    }
+    
+    .price-header {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      font-family: var(--sds-typography-body-font-family);
+      color: var(--sds-color-text-default-default);
+      font-weight: var(--sds-typography-body-font-weight-regular);
+      line-height: 1.4;
+    }
+    
+    .price-label {
+      font-size: var(--sds-typography-body-size-medium);
+      flex: 1;
+    }
+    
+    .price-output {
+      display: flex;
+      align-items: center;
+      font-size: var(--sds-typography-body-size-small);
+      text-align: right;
+    }
+    
+    .slider-container {
+      display: flex;
+      margin-top: 12px;
+      width: 100%;
+      align-items: center;
+    }
+    
+    .slider-track {
+      border-radius: 9999px;
+      background-color: #e6e6e6;
+      display: flex;
+      height: 8px;
+      width: 100%;
+      align-items: center;
+      flex: 1;
+    }
+    
+    .slider-handle {
+      border-radius: 9999px;
+      background-color: #2c2c2c;
+      width: 16px;
+      height: 16px;
+    }
+    
+    .slider-range {
+      width: 176px;
+      height: 6px;
+    }
+    
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+    
+    @media (max-width: 991px) {
+      .keyword-section,
+      .keyword-heading,
+      .tag-list,
+      .tag-item,
+      .price-header,
+      .price-output {
+        white-space: initial;
+      }
+    }
+    </style>
+    <br>
+    <br>
+    
+    <div class="filter-menu" role="complementary" aria-label="Filter options">
+      <div class="keyword-section">
+        <div class="keyword-heading">Keywords</div>
+        <div class="tag-list">
+          <div class="tag-item" role="button" tabindex="0">
+            <div class="tag-text">Chicken</div>
+          </div>
+          <div class="tag-item" role="button" tabindex="0">
+            <div class="tag-text">Drinks</div>
+          </div>
+          <div class="tag-item" role="button" tabindex="0">
+            <div class="tag-text">Burger</div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="filter-section">
+        <div class="checkbox-list" role="group" aria-label="Food categories">
+          <div class="checkbox-item">
+            <div class="checkbox-wrapper">
+              <div class="checkbox-control" role="checkbox" tabindex="0" aria-checked="false">
+              </div>
+              <label class="checkbox-label">Chicken Items</label>
+            </div>
+          </div>
+          <div class="checkbox-item">
+            <div class="checkbox-wrapper">
+              <div class="checkbox-control" role="checkbox" tabindex="0" aria-checked="false">
+              </div>
+              <label class="checkbox-label">Veg Items</label>
+            </div>
+          </div>
+          <div class="checkbox-item">
+            <div class="checkbox-wrapper">
+              <div class="checkbox-control" role="checkbox" tabindex="0" aria-checked="false">
+              </div>
+              <label class="checkbox-label">Cold drinks</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="price-slider">
+        <div class="price-header">
+          <div class="price-label">Price</div>
+          <div class="price-output">
+            <span>Rs</span>
+            <span>0-5000</span>
+          </div>
+        </div>
+        <div class="slider-container" role="group" aria-label="Price range">
+          <div class="slider-track">
+            <div class="slider-handle" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="5000" aria-valuenow="0"></div>
+            <div class="slider-range"></div>
+            <div class="slider-handle" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="5000" aria-valuenow="5000"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <center>
+      <div class="restaurant-menu">
+        <div class="menu-title"><b>Restaurants</b></div>
+      </div>
+    <div class="restaurant-container">
+      <div class="divider"></div>
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/99a3fdafd78de27e01bd04791330c0b3b3245b084e4e2f499aa03878fae01c05?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="Café Swotha restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">Café Swotha</div>
+            <div class="restaurant-rating">4.7(1k)</div>
+          </div>
+        </div>
+      </div>
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/190e0abc390563938dcbcce09a3380e4b68dc39b5a93c2adac675e5a0d3582b3?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="The Village Café restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">The Village Café</div>
+            <div class="restaurant-rating">4.5(2k)</div>
+          </div>
+        </div>
+      </div>
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7bab5e2fd5cf14945df1afdfa29554935e2e4109b9fd629d83ec27e83a588559?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="Chicken Station restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">Chicken Station</div>
+            <div class="restaurant-rating">4.1(1k)</div>
+          </div>
+        </div>
+      </div>
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0b3d604ec3805410b3e9995288265cb5e3a2264446e07575756fbe246481abf3?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="Burger king restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">Burger king</div>
+            <div class="restaurant-rating">4.2(5k)</div>
+          </div>
+        </div>
+      </div>
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/73cbe9cdf7729852b8601caf981a33c3ace60e4a01e2087a72371f07cb6b3948?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="D&D Restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">D&D Restaurant</div>
+            <div class="restaurant-rating">4.5(2k)</div>
+          </div>
+        </div>
+      </div>
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e8cf1b22f550e01aab30522f76a118212f906fa8ceb3eea30a8e302d139764e?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="Chicken Station restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">Chicken Station</div>
+            <div class="restaurant-rating">4.0(3k)</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/50ae7c8f10c86d7a97ba0041faebed4d53e00e87369664fb009532e7f8b6b9d4?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="Piano B restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">Piano B</div>
+            <div class="restaurant-rating">4.1(3k)</div>
+          </div>
+        </div>
+      </div>
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/03a6db37e4f285dde563c36f2196f46c9cf54e962c1b009aa589e110e1880a0a?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="Shangri - La Restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">Shangri - La Restaurant</div>
+            <div class="restaurant-rating">4.2(5k)</div>
+          </div>
+        </div>
+      </div>
+      <div class="restaurant-item" >
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/d0727bd547dbff5d3048075c1bc25deebe8f16b1bb15025224dd1a67c5eecc9e?apiKey=ced1a49a328f49248775b299c889d2e7&" class="restaurant-icon" alt="The Ghangri Sui Mai restaurant icon" />
+        <div class="restaurant-content">
+          <div class="restaurant-row">
+            <div class="restaurant-name">The Ghangri Sui Mai</div>
+            <div class="restaurant-rating">4.5(2k)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </center>
+</body>
+</html>
