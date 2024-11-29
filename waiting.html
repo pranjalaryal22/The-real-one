@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-wrapper {
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-logo {
+      aspect-ratio: 4.05;
+      object-fit: contain;
+      width: 100%;
+      border-radius: 4px 4px 0 0;
+      z-index: 10;
+      margin-left: 17px;
+      min-height: 74px;
+      max-width: 327px;
+    }
+
+    .main-content {
+      background-color: #fff;
+      display: flex;
+      margin-top: -74px;
+      width: 100%;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .nav-header {
+      background-color: #f1eeee;
+      border-bottom: 1px solid #d9d9d9;
+      display: flex;
+      width: 1520px;
+      align-items: center;
+      gap: 24px;
+      overflow: hidden;
+      /* padding: 32px; */
+      padding-bottom: 40px;
+    }
+
+    .nav-pills {
+      align-self: stretch;
+      display: flex;
+      min-width: 240px;
+      width: 1106px;
+      height: 32px;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .auth-buttons {
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 178px;
+    }
+
+    .auth-btn {
+      align-self: stretch;
+      border-radius: 8px;
+      background-color: #fff;
+      padding: 8px;
+      flex: 1;
+      border: 1px solid #767676;
+    }
+
+    .register-btn {
+      border-color: #2c2c2c;
+    }
+
+    .content-grid {
+      display: flex;
+      width: 1520px;
+      height: 700px;
+      flex-direction: column;
+      /* padding: 64px; */
+      background-image: url(https://cdn.builder.io/api/v1/image/assets%2Fba4f8e00a9f94511ac5fbc124ca75a3a%2F3dfe46ea73084e6eab257a403c9bc2b4);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .page-header {
+      display: flex;
+      width: 370px;
+      max-width: 100%;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .page-title {
+      letter-spacing: -0.48px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .page-subtitle {
+      margin-top: 8px;
+      font: 700 64px Inter, sans-serif;
+      background-color: #d9d9d9;
+    }
+
+    .card-grid {
+      /* display: flex; */
+      /* margin-top: 48px; */
+      /* min-height: 357px;
+      width: 100%; */
+      /* align-items: center; */
+      /* gap: 40px; */
+      /* flex-wrap: wrap; */
+      /* justify-content: space-between; */
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: minmax(150px, auto);
+      grid-gap: 50px;
+      max-width: 990px;
+      margin: 0 auto;
+    }
+
+    .user-card {
+      /* border-radius: 100px; */
+      background-color: #fff;
+      display: flex;
+      /* min-width: 300px; */
+      width: 464px;
+      align-items: start;
+      gap: 24px;
+      flex: 2;
+      /* padding: 24px; */
+      border: 1px solid #d9d9d9;
+      height: 200px;
+    }
+
+    .user-avatar {
+      aspect-ratio: 1;
+      object-fit: contain;
+      width: 160px;
+      min-width: 160px;
+      min-height: 160px;
+    }
+
+    .card-content {
+      display: flex;
+      min-width: 160px;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-text {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .user-name {
+      letter-spacing: -0.48px;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .order-details {
+      margin-top: 8px;
+      line-height: 22px;
+    }
+
+    .bold-text {
+      font-weight: 700;
+    }
+
+    .dark-text {
+      color: #1e1e1e;
+    }
+
+    .page-footer {
+      background-color: #fff;
+      border-top: 1px solid #d9d9d9;
+      display: flex;
+      min-height: 361px;
+      width: 100%;
+      align-items: start;
+      gap: 16px;
+      overflow: hidden;
+      flex-wrap: wrap;
+      padding: 32px 32px 53px;
+    }
+
+    .footer-brand {
+      display: flex;
+      min-width: 240px;
+      flex-direction: column;
+      align-items: start;
+      width: 262px;
+    }
+
+    .brand-logo {
+      display: flex;
+      min-height: 35px;
+    }
+
+    .social-links {
+      display: flex;
+      margin-top: 24px;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .social-icon {
+      aspect-ratio: 1;
+      object-fit: contain;
+      width: 24px;
+    }
+
+    .footer-section {
+      display: flex;
+      min-width: 240px;
+      flex-direction: column;
+      align-items: start;
+      width: 262px;
+      line-height: 1.4;
+    }
+
+    .footer-title {
+      width: 100%;
+      padding-bottom: 16px;
+      font-weight: bold;
+    }
+
+    .footer-link {
+      margin-top: 12px;
+      width: 89px;
+    }
+
+    @media (max-width: 991px) {
+      .header-logo {
+        margin-left: 10px;
+      }
+
+      .main-content {
+        max-width: 100%;
+      }
+
+      .nav-header {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+
+      .content-grid {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+
+      .page-subtitle {
+        font-size: 40px;
+      }
+
+      .card-grid {
+        max-width: 100%;
+        margin-top: 40px;
+      }
+
+      .user-card {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+
+      .page-footer {
+        max-width: 100%;
+        padding: 0 20px;
+      }
+    }
+  </style>
+  <body>
+    <div class="page-wrapper">
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/c880a1f1af7d6d74b5caf3ab8b14f72acbb243f2e111779dbb9a53e788b5ca8c?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+        alt="Header Logo"
+        class="header-logo"
+      />
+
+      <main class="main-content">
+        <nav class="nav-header">
+          <div
+            class="nav-pills"
+            role="navigation"
+            aria-label="Main navigation"
+          ></div>
+          <div class="auth-buttons">
+            <button class="auth-btn">Sign in</button>
+            <button class="auth-btn register-btn">Register</button>
+          </div>
+        </nav>
+
+        <section class="content-grid">
+          <header class="page-header">
+            <h1 class="page-title">Heading</h1>
+            <h2 class="page-subtitle">Waiting List</h2>
+          </header>
+
+          <div class="card-grid">
+            <article class="user-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6f799425d4f6e40aadd63bbf366c3e625ec3e79f4a385eab718d472ac1f77699?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="User 1 Profile"
+                class="user-avatar"
+              />
+              <div class="card-content">
+                <div class="card-text">
+                  <h3 class="user-name">User1</h3>
+                  <ul class="order-details">
+                    <li class="bold-text">7 people</li>
+                    <li class="bold-text">1 Large Chicken Pizza</li>
+                    <li class="bold-text">7 500 ml Coca-cola</li>
+                    <li class="bold-text">4 Plate Chicken Momo</li>
+                    <li class="bold-text">2 Chicken Chilli</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="user-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6f799425d4f6e40aadd63bbf366c3e625ec3e79f4a385eab718d472ac1f77699?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="User 2 Profile"
+                class="user-avatar"
+              />
+              <div class="card-content">
+                <div class="card-text">
+                  <h3 class="user-name">User2</h3>
+                  <ul class="order-details">
+                    <li class="bold-text">2 people</li>
+                    <li class="bold-text">1 Small Chicken Pizza</li>
+                    <li class="bold-text">1 500 ml Fanta</li>
+                    <li class="bold-text">1 500 ml Coca-cola</li>
+                    <li class="bold-text">2 Plate Chicken Momo</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="user-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6f799425d4f6e40aadd63bbf366c3e625ec3e79f4a385eab718d472ac1f77699?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="User 3 Profile"
+                class="user-avatar"
+              />
+              <div class="card-content">
+                <div class="card-text">
+                  <h3 class="user-name">User3</h3>
+                  <ul class="order-details">
+                    <li class="bold-text">1 people</li>
+                    <li class="bold-text">1 500 ml Coca-cola</li>
+                    <li class="bold-text">1 Plate Chicken Momo</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="user-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6f799425d4f6e40aadd63bbf366c3e625ec3e79f4a385eab718d472ac1f77699?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="User 4 Profile"
+                class="user-avatar"
+              />
+              <div class="card-content">
+                <div class="card-text">
+                  <h3 class="user-name">User4</h3>
+                  <ul class="order-details">
+                    <li class="bold-text dark-text">2 people</li>
+                    <li class="bold-text dark-text">1 Medium Mixed Pizza</li>
+                    <li class="bold-text dark-text">1 500 ml Coca-cola</li>
+                    <li class="bold-text dark-text">2 Chicken Burger</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <footer class="page-footer">
+          <div class="footer-brand">
+            <div class="brand-logo"></div>
+            <div class="social-links">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/b742f3f6e1cba31a89a8e6720d9b537141ad17b582c67349ffda3d14027d6bb4?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Social Media Icon"
+                class="social-icon"
+              />
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/fa0bbd02238dc425dc4a0c5ccd6549df64537f5f3fff73839302c0feb49d2ef6?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Social Media Icon"
+                class="social-icon"
+              />
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/40c53fa25d74e92f29e9e56a12fd8fa776a40abd54a8885e3a7b157f068d6599?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Social Media Icon"
+                class="social-icon"
+              />
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/e8afc8967f631a1a53c90831d36bda8caeb46b27fb6a4efcc3044ff36f06b1d4?placeholderIfAbsent=true&apiKey=ba4f8e00a9f94511ac5fbc124ca75a3a"
+                alt="Social Media Icon"
+                class="social-icon"
+              />
+            </div>
+          </div>
+
+          <nav class="footer-section" aria-label="About navigation">
+            <h4 class="footer-title">We are e-menu</h4>
+            <a href="#" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Available Restaurants</a>
+            <a href="#" class="footer-link">Available Areas</a>
+            <a href="#" class="footer-link">Blog</a>
+          </nav>
+
+          <div class="footer-section">
+            <h4 class="footer-title">Call Us</h4>
+            <p class="footer-link">Kathmandu:</p>
+            <p class="footer-link">01-XXXXXXX</p>
+            <p class="footer-link">98XXXXXXXX</p>
+            <p class="footer-link">01-XXXXXXX</p>
+          </div>
+
+          <nav class="footer-section" aria-label="Help navigation">
+            <h4 class="footer-title">Get Help</h4>
+            <a href="#" class="footer-link">How to Order?</a>
+            <a href="#" class="footer-link">FAQs</a>
+            <a href="#" class="footer-link">Contact Us</a>
+          </nav>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

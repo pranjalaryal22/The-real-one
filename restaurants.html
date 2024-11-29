@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .page-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+      }
+
+      .top-header {
+        background: #f1eeee;
+        border-bottom: 1px solid #d9d9d9;
+        z-index: 1;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        gap: 24px;
+        padding: 32px;
+        font: 400 16px/1 system-ui;
+      }
+
+      .nav-pills {
+        align-self: stretch;
+        display: flex;
+        min-width: 240px;
+        width: 806px;
+        height: 32px;
+        gap: 8px;
+        flex: 1;
+      }
+
+      .auth-buttons {
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 178px;
+      }
+
+      .auth-btn {
+        flex: 1;
+        border-radius: 8px;
+        background: #fff;
+        padding: 8px;
+        border: 1px solid #767676;
+      }
+
+      .auth-btn-register {
+        flex: 1;
+        border-radius: 8px;
+        background: #fff;
+        padding: 8px;
+        border: 1px solid #2c2c2c;
+      }
+
+      .main-content {
+        background: #000000;
+        z-index: 1;
+        display: flex;
+        width: 100%;
+        align-items: start;
+        gap: 40px 64px;
+        padding: 32px;
+        font: 16px system-ui;
+      }
+
+      .product-grid {
+        border-radius: 8px;
+        display: flex;
+        min-width: 240px;
+        width: 100%;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .search-bar {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        color: #666;
+        font-weight: 400;
+        justify-content: space-between;
+      }
+
+      .search-wrapper {
+        align-self: stretch;
+        display: flex;
+        min-width: 240px;
+        width: 327px;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .search-input {
+        border-radius: 9999px;
+        background: #fff;
+        align-self: stretch;
+        display: flex;
+        min-width: 240px;
+        width: 100%;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+        padding: 12px 16px;
+        border: 1px solid #d9d9d9;
+      }
+
+      .search-text {
+        align-self: stretch;
+        flex: 1;
+      }
+
+      .search-icon {
+        aspect-ratio: 1;
+        width: 16px;
+        align-self: stretch;
+      }
+
+      .products-grid {
+        display: flex;
+        margin-top: 48px;
+        width: 100%;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .product-card {
+        border-radius: 8px;
+        background: #fff;
+        align-self: stretch;
+        display: flex;
+        min-width: 240px;
+        flex-direction: column;
+        flex: 1;
+        padding: 16px;
+        border: 1px solid #d9d9d9;
+      }
+
+      .product-image {
+        aspect-ratio: 1.17;
+        width: 100%;
+        min-height: 247px;
+        object-fit: cover;
+      }
+
+      .product-details {
+        display: flex;
+        margin-top: 16px;
+        width: 208px;
+        max-width: 100%;
+        flex-direction: column;
+      }
+
+      .product-title {
+        font-weight: 700;
+        width: 100%;
+      }
+
+      .product-price {
+        margin-top: 8px;
+        font-weight: 600;
+      }
+
+      .footer {
+        background: #fff;
+        border-top: 1px solid #d9d9d9;
+        z-index: 1;
+        display: flex;
+        height: 361px;
+        width: 100%;
+        align-items: start;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding: 32px 32px 0;
+      }
+
+      .footer-column {
+        display: flex;
+        min-width: 240px;
+        flex-direction: column;
+        align-items: start;
+        flex-grow: 1;
+        width: 210px;
+      }
+
+      .footer-logo {
+        min-height: 35px;
+      }
+
+      .social-links {
+        display: flex;
+        margin-top: 24px;
+        gap: 16px;
+      }
+
+      .social-icon {
+        aspect-ratio: 1;
+        width: 24px;
+      }
+
+      .footer-title {
+        width: 100%;
+        padding-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .footer-link {
+        margin-top: 12px;
+        width: 89px;
+      }
+
+      .brand-logo {
+        aspect-ratio: 4.05;
+        width: 299px;
+        border-radius: 4px 4px 0 0;
+        position: absolute;
+        z-index: 1;
+        min-height: 74px;
+        max-width: 100%;
+        left: 20px;
+        top: 17px;
+        height: 74px;
+      }
+
+      @media (max-width: 991px) {
+        .top-header,
+        .main-content,
+        .footer {
+          max-width: 100%;
+          padding: 0 20px;
+        }
+
+        .product-grid {
+          max-width: 100%;
+        }
+
+        .products-grid {
+          margin-top: 40px;
+        }
+
+        .auth-btn-register,
+        .footer-link,
+        .search-wrapper,
+        .search-input {
+          white-space: initial;
+        }
+      }
+      .products-grid {
+        display: flex;
+        margin-top: 48px;
+        width: 100%;
+        align-items: flex-start; /* Changed to flex-start for better alignment */
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .product-card {
+        border-radius: 8px;
+        background: #fff;
+        align-self: stretch;
+        display: flex;
+        min-width: 200px; /* Decreased minimum width */
+        flex-direction: column;
+        flex: 1 1 calc(25% - 16px); /* Adjusted for 4 columns */
+        padding: 16px;
+        border: 1px solid #d9d9d9;
+      }
+    </style>
+
+    <div class="page-wrapper">
+      <header class="top-header">
+        <nav class="nav-pills" aria-label="Main navigation"></nav>
+        <div class="auth-buttons">
+          <button class="auth-btn">Sign in</button>
+          <button class="auth-btn-register">Register</button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="product-grid">
+          <div class="search-bar">
+            <div class="search-wrapper">
+              <div class="search-input" role="search">
+                <input
+                  type="search"
+                  class="search-text"
+                  placeholder="Search"
+                  aria-label="Search products"
+                />
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/f352c30257ddfc0160ee19bdedb7e69c13e6fcf92b370ade82a1fd57f23c5359?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+                  alt=""
+                  class="search-icon"
+                />
+              </div>
+            </div>
+          </div>
+          <a href="order.html">
+          <div class="products-grid">
+            <article class="product-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae5dfeab860822c4221ac924134d648dbc9028e769116acbd245f4e330429f77?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+                alt="Carpe Diem Lounge & Bakery storefront"
+                class="product-image"
+              />
+            </a>
+              <div class="product-details">
+                <h2 class="product-title">Carpe Diem Lounge & Bakery</h2>
+              </div>
+            </article>
+            <a href="order.html">
+            <article class="product-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/46311c6966c2407f381ff227557e14b60ae095a1f4dd72838693de63cc401361?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+                alt="Lavie Restaurant storefront"
+                class="product-image"
+              />
+            </a>
+              <div class="product-details">
+                <h2 class="product-title">Lavie Restaurant</h2>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a href="order.html">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/192eabcb20033aa280f782fd483d29caa5fbdf3626ea7aeb81aaabd1189dd2be?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+                alt="Nectar By Carpediem storefront"
+                class="product-image"
+              />
+            </a>
+              <div class="product-details">
+                <h2 class="product-title">Nectar By Carpediem</h2>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a href="order.html">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/84c7bbf712c7903b9a2b94852028a430cbaed4ef7dd4751289c9140a4e9ccb63?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+                alt="Fanta 500 ml bottle"
+                class="product-image"
+              />
+            </a>
+              <div class="product-details">
+                <h2 class="product-title">Fanta 500 ml</h2>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a href="order.html">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/f40a01dc9b571a32b9068338aa4d61a488c850c5942b99aead729350c9bc989d?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+                alt="Thamel Kitchen storefront"
+                class="product-image"
+              />
+              </a>
+              <div class="product-details">
+                <h2 class="product-title">Thamel Kitchen</h2>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a href="order.html">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/41ca38f50e0f091ca6321edf5adb852da12a7ca564db90698772723e2f30c1ae?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+                alt="Fish Burger"
+                class="product-image"
+              />
+              </a>
+              <div class="product-details">
+                <h2 class="product-title">Shangri-La Restaurant</h2>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-column">
+          <div class="footer-logo"></div>
+          <div class="social-links">
+            
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b742f3f6e1cba31a89a8e6720d9b537141ad17b582c67349ffda3d14027d6bb4?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+              alt="Social media link"
+              class="social-icon"
+            />
+            
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/6479a0aab4675b86bcdc0f593ad912d31516b28155c02866f7c6bdfd7bed0a92?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+              alt="Social media link"
+              class="social-icon"
+            />
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/f3562caf487ea8a304c0540d10935bcad772bee38c070c3a637c93b0db1af840?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+              alt="Social media link"
+              class="social-icon"
+            />
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/6b1d86bd76f791d8da8cfca1bcff0b69e3ba2b16ee397b353da3bb34e8776bec?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+              alt="Social media link"
+              class="social-icon"
+            />
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">We are e-menu</h3>
+          <a href="#" class="footer-link">About Us</a>
+          <a href="#" class="footer-link">Available Restaurants</a>
+          <a href="#" class="footer-link">Available Areas</a>
+          <a href="#" class="footer-link">Blog</a>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Call Us</h3>
+          <p class="footer-link">Kathmandu:</p>
+          <p class="footer-link">01-XXXXXXX</p>
+          <p class="footer-link">98XXXXXXXX</p>
+          <p class="footer-link">01-XXXXXXX</p>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">Get Help</h3>
+        </div>
+      </footer>
+
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/d57e65ca0a6f4cb17395f0995fec79dba04eea95d5af3dc8ca274e89c1474721?placeholderIfAbsent=true&apiKey=ced1a49a328f49248775b299c889d2e7"
+        alt="Brand logo"
+        class="brand-logo"
+      />
+    </div>
+  </body>
+</html>
