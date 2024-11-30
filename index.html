@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple HTML HomePage</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Sriracha&display=swap");
+
+      body {
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      /* CSS for header */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5f5f5;
+      }
+
+      .header .logo {
+        font-size: 25px;
+        font-family: "Sriracha", cursive;
+        color: #000;
+        text-decoration: none;
+        margin-left: 30px;
+      }
+      .logo {
+        display: flex;
+        height: 100px;
+      }
+
+      .nav-items {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #f5f5f5;
+        margin-right: 20px;
+      }
+
+      .nav-items a {
+        text-decoration: none;
+        color: #000;
+        padding: 35px 20px;
+      }
+
+      /* CSS for main element */
+      .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 520px;
+        background: url("bg_pizza.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .intro h1 {
+        font-family: sans-serif;
+        font-size: 60px;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      .intro p {
+        font-size: 20px;
+        color: #d1d1d1;
+        text-transform: uppercase;
+        margin: 20px 0;
+      }
+
+      .intro button {
+        background-color: #5edaf0;
+        color: #000;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+      }
+
+      .achievements {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 40px 80px;
+      }
+
+      .achievements .work {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px;
+      }
+
+      .achievements .work i {
+        width: fit-content;
+        font-size: 50px;
+        color: #333333;
+        border-radius: 50%;
+        border: 2px solid #333333;
+        padding: 12px;
+      }
+
+      .achievements .work .work-heading {
+        font-size: 20px;
+        color: #333333;
+        text-transform: uppercase;
+        margin: 10px 0;
+      }
+
+      .achievements .work .work-text {
+        font-size: 15px;
+        color: #585858;
+        margin: 10px 0;
+      }
+
+      .about-me {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 80px;
+        border-top: 2px solid #eeeeee;
+      }
+
+      .about-me img {
+        width: 500px;
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      #about-me-text h2 {
+        font-size: 30px;
+        color: #333333;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      #about-me-text p {
+        font-size: 15px;
+        color: #585858;
+        margin: 10px 0;
+      }
+
+      /* CSS for footer */
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #302f49;
+        padding: 40px 80px;
+      }
+
+      .footer #copy {
+        color: #fff;
+        font-size: 20px;
+      }
+
+      .bottom-links {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 40px 0;
+      }
+
+      .bottom-links .links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px;
+      }
+
+      .bottom-links .links span {
+        font-size: 20px;
+        color: #fff;
+        text-transform: uppercase;
+        margin: 10px 0;
+      }
+
+      .bottom-links .links a {
+        text-decoration: none;
+        color: #a1a1a1;
+        padding: 10px 20px;
+      }
+      .work a {
+        text-decoration: none;
+      }
+      /* styles.css */
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .chatbot-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 70px;
+        height: 70px;
+        /* background-color: #007bff; Change to a color you prefer */
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .chatbot-icon :hover {
+        -ms-transform: scale(1.2); /* IE 9 */
+        -webkit-transform: scale(1.2); /* Safari 3-8 */
+        transform: scale(1.2);
+      }
+      .chatbot-icon img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+
+      .chatbot-window {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 320px;
+        height: 400px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: none;
+        flex-direction: column;
+      }
+
+      .chatbot-header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .chatbot-header button {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .chatbot-content {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+      }
+
+      .chatbot-content iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="#" class="logo"><img src="logo_small.jpg" alt="" /></a>
+      <nav class="nav-items">
+        <a href="#">Home</a>
+        <a href="#about-me-text">About</a>
+        <a href="#copy">Contact</a>
+        <strong>
+          <a class="login" href="logging in page.html" target="_self"
+            >Login</a
+          ></strong
+        >
+
+        <strong class="Register_" href="#">&nbsp;&nbsp;&nbsp;Register</strong>
+      </nav>
+    </header>
+    <main>
+      <div class="intro">
+        <h1>E-Menu</h1>
+        <p>
+          Don’t Wait <br />
+          &nbsp; &nbsp; &nbsp;Just Pre-Order.
+        </p>
+        <a href="restaurants.html">
+          <button>Order Now</button>
+        </a>
+      </div>
+      <div class="achievements">
+        <div class="work">
+          <a href="order.html">
+            <i class="fa-solid fa-pizza-slice"></i>
+            <p class="work-heading">Pizza Hut</p>
+            <p class="work-text">
+              At Pizza Hut, we believe that every meal should be a delightful
+              experience filled with the flavors you love. Whether you're
+              craving a classic pepperoni, a veggie extravaganza, or one of our
+              signature stuffed crusts, we've got something for everyone.
+            </p>
+          </a>
+        </div>
+        <div class="work">
+          <a href="order.html">
+            <i class="fa-solid fa-mug-hot"></i>
+            <p class="work-heading">chiya adda</p>
+            <p class="work-text">
+              At Tea Haven, we believe every cup of tea should be an oasis of
+              calm and delight. From the soothing aroma of our classic chamomile
+              to the invigorating zest of our fresh mint brew
+            </p>
+          </a>
+        </div>
+        <div class="work">
+          <a href="order.html">
+            <<i class="fa-solid fa-burger"></i>
+            <p class="work-heading">Burger King</p>
+            <p class="work-text">
+              At Burger Bliss, we believe every bite should be a burst of joy
+              and flavor. From our juicy, hand-crafted patties to our freshly
+              baked buns, each burger is made with love and the finest
+              ingredients.
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="about-me">
+        <div id="about-me-text">
+          <h2>About Us</h2>
+          <p>
+            At E-Menu, we believe in making your dining experience seamless and
+            enjoyable. Our platform allows you to pre-order your favorite dishes
+            from a wide selection of restaurants, so your meal is ready as soon
+            as you arrive. No more waiting in line or wondering what to eat –
+            simply browse, order, and enjoy! Whether you're planning a quick
+            lunch or a special dinner, E-Menu ensures your food is just a tap
+            away. Make your dining moments effortless and delightful with
+            E-Menu. Order ahead and savor the convenience today! 🍽️
+          </p>
+        </div>
+        <img src="logo.jpg" alt="logo" />
+      </div>
+      <div id="chatbot-icon" class="chatbot-icon" onclick="openChatbot()">
+        <img
+          src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-chatbot-icon-chat-bot-robot-png-image_8080841.png"
+          alt="Chatbot"
+        />
+      </div>
+
+      <!-- Chatbot Floating Window -->
+      <div id="chatbot-window" class="chatbot-window">
+        <div class="chatbot-header">
+          <span>Chat with us</span>
+          <button onclick="closeChatbot()">X</button>
+        </div>
+        <div class="chatbot-content">
+          <iframe
+            src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/11/29/09/20241129090553-9RUD7L78.json"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div id="copy">&copy; Contact Us: 983842874627</div>
+      <div class="bottom-links">
+        <div class="links">
+          <span>More Info</span>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="links">
+          <span>Social Links</span>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // script.js
+      function openChatbot() {
+        document.getElementById("chatbot-window").style.display = "flex";
+      }
+
+      function closeChatbot() {
+        document.getElementById("chatbot-window").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
